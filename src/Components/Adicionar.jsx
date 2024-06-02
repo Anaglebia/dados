@@ -20,7 +20,7 @@ const Adicionar = ({ onSave }) => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Favor preencher os dados corretamente!'
+                text: 'Favor preencher o nome corretamente!'
             })
         } else if (text && !day) {
             Swal.fire({
@@ -29,29 +29,27 @@ const Adicionar = ({ onSave }) => {
                 text: 'Favor preencher a data corretamente!'
             })
         } else {
-            onSave({ text, day , especialidade,clinica});
+            onSave({ text, day, especialidade, clinica});
         }
         setText('');
         setDay('');
+        setEspecialidade('');
+        setClinica('');
     }
     return (
         <form className="add-form" onSubmit={onSubmit}>
-            <div className="form-control">
-                <label>Nome</label>
-                <input type="text" placeholder="Nome" value={text} onChange={(e) => setText(e.target.value)} />
+            <div className="form-group">
+                <input type="text" placeholder="Nome" value={text} onChange={(e) => setText(e.target.value)} className="form-control"/>
             </div>
 
-            <div className="form-control">
-                <label>Data da consulta</label>
-                <input type="dete" placeholder="Data" value={day} onChange={(e) => setDay(e.target.value)} />
+            <div className="form-group">
+                <input type="date" placeholder="Data" value={day} onChange={(e) => setDay(e.target.value)} className="form-control"/>
             </div>
-            <div className="form-control">
-                <label>Especialidade</label>
-                <input type="text" placeholder="Especialidade" value={especialidade} onChange={(e) => setEspecialidade(e.target.value)} />
+            <div className="form-group">
+                <input type="text" placeholder="Especialidade" value={especialidade} onChange={(e) => setEspecialidade(e.target.value)} className="form-control"/>
             </div>
-            <div className="form-control">
-                <label>Clinica</label>
-                <input type="text" placeholder="Clinica" value={clinica} onChange={(e) => setClinica(e.target.value)} />
+            <div className="form-group">
+                <input type="text" placeholder="Clinica" value={clinica} onChange={(e) => setClinica(e.target.value)} className="form-control" />
             </div>
             <input type="submit" className="btn btn-block" value="Salvar agendamento" />
         </form>

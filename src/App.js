@@ -27,7 +27,7 @@ function App() {
         } else {
             setTasks(getTasks);
         }
-    }, [])
+    }, [getTasks])
     // Adicionar
     const addTask = (task) => {
         const id = uuidv4();
@@ -35,7 +35,7 @@ function App() {
         setTasks([...tasks, newTask]);
         Swal.fire({
             icon: 'success',
-            title: 'Yay...',
+            title: 'Agendado...',
             text: 'Agendamento salvo com sucesso!'
         })
         localStorage.setItem("taskAdded", JSON.stringify([...tasks, newTask]));
@@ -46,7 +46,7 @@ function App() {
         setTasks(deleteTask);
         Swal.fire({
             icon: 'success',
-            title: 'Oops...',
+            title: 'Cancelado...',
             text: 'Agendamento cancelado com sucesso!'
         })
         localStorage.setItem("taskAdded", JSON.stringify(deleteTask));
@@ -75,7 +75,7 @@ function App() {
         })
         Swal.fire({
             icon: 'success',
-            title: 'Yay...',
+            title: 'Reagendamento...',
             text: 'Agendamento editado com sucesso!'
         })
         localStorage.setItem("taskAdded", JSON.stringify(myData));
@@ -86,21 +86,16 @@ function App() {
             {
                 loading ?
                     <div className="spinnerContainer">
-                        <div className="spinner-grow text-primary" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                        <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
                         </div>
-                        <div className="spinner-grow text-secondary" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                        <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
                         </div>
-                        <div className="spinner-grow text-success" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                        <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
                         </div>
-                        <div className="spinner-grow text-danger" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                        <div className="spinner-grow text-warning" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
+                        
                     </div> :
                     <div className="container">
                         {/* App Header that has open and App Name */}
@@ -109,7 +104,7 @@ function App() {
                         {showAddTask && <Adicionar onSave={addTask} />}
                         {/* Task Counter */}
                         <h3>Total de agendamentos: {tasks.length}</h3>
-                        {/* Displaying of Tasks */}
+                        {/* Total de agendamento */}
                         {
                             tasks.length > 0 ?
                                 (<Tasks tasks={tasks} onDelete={deleteTask} onEdit={editTask} />) :
